@@ -1,0 +1,48 @@
+<!-- Write a JavaScript code block using arrays and generate the current date in words, this should include the day, month and year. -->
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract Date, Month, and Weekday</title>
+    <script>
+        function extractDateDetails() {
+            // Get the selected date value from the input
+            const dateInput = document.getElementById('dateInput').value;
+            
+            // If no date is selected, return early
+            if (!dateInput) {
+                document.getElementById('dateDetails').innerHTML = "Please select a date.";
+                return;
+            }
+
+            // Create a Date object from the selected value
+            const selectedDate = new Date(dateInput);
+            console.log(selectedDate);
+            // Define arrays for day and month names
+            const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            // Extract the day, month, and weekday
+            const day = selectedDate.getDate(); // Get the day of the month (1-31)
+            const month = monthsOfYear[selectedDate.getMonth()]; // Get the month name (0-11)
+            const weekday = daysOfWeek[selectedDate.getDay()]; // Get the day of the week (0-6)
+
+            // Display the result
+            document.getElementById('dateDetails').innerHTML = `Selected Date: ${weekday}, ${month} ${day}, ${selectedDate.getFullYear()}`;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Extract Date, Month, and Weekday</h1>
+    
+    <!-- Date input field -->
+    <input type="date" id="dateInput" onchange="extractDateDetails()">
+    
+    <!-- Paragraph to display the result -->
+    <p id="dateDetails">Please select a date.</p>
+</body>
+
+</html>
