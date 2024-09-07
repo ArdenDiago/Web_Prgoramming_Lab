@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Animation</title>
+    <style>
+        body {
+            background-color: rgb(61, 61, 61);
+        }
+        img {
+            border-radius: 50%;
+        }
+        #layer1 {position: absolute; top: 50px; left: 50px;}
+        #layer2 {position: absolute; top: 50px; left: 350px;}
+        #layer3 {position: absolute; top: 50px; left: 700px;}
+    </style>
+    <script type="text/javascript">
+        function moveImage(layer) {
+            var top = window.prompt("Enter top value: ");
+            var left = window.prompt("Enter left value: "); 
+            document.getElementById(layer).style.top = top + 'px';
+            document.getElementById(layer).style.left = left + 'px';
+        }
+    </script>
+</head>
+
+<body>
+    <div id="layer1"><img src="./P3Photo.jpeg" onclick="moveImage('layer1')" alt="Ball Image."></div>
+    <div id="layer2"><img src="./P3Photo.jpeg" onclick="moveImage('layer2')" alt="Ball Image."></div>
+    <div id="layer3"><img src="./P3Photo.jpeg" onclick="moveImage('layer3')" alt="Ball Image."></div>
+</body>
+
+</html>

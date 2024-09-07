@@ -1,0 +1,61 @@
+<!-- 
+Create a form with the elements of Textboxes, Radio buttons, Checkboxes, and so on.
+Write JavaScript code to validate the format in email, and mobile number in 10 characters, If a textbox has been left empty, popup an alert indicating when email, mobile number and textbox has been left empty.  
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form Validation</title>
+    <script>
+        function validateForm() {
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const textbox = document.getElementById('textbox').value;
+            let isValid = true;
+            let errorMessage = '';
+            if (!validateEmail(email)) {
+                errorMessage += "Invalid email format.\n";
+                isValid = false;
+            }
+            if (mobile.length !== 10) {
+                errorMessage += "Mobile number should be 10 characters.\n";
+                isValid = false;
+            }
+            if (email === '' || mobile === '' || textbox === '') {
+                errorMessage += "Please fill in all fields. \n";
+                isValid = false;
+            }
+            if (!isValid) {
+                alert(errorMessage);
+            }
+            return isValid;
+        }
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Form Validation</h2>
+    <form onsubmit="return validateForm()">
+        Email: <input type="text" id="email"><br><br>
+        Mobile Number: <input type="text" id="mobile"><br><br>
+        Address: <input type="text" id="textbox"><br><br>
+        Gender:
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br><br>
+        Interests:
+        <input type="checkbox" id="music" name="interest" value="music">
+        <label for="music">Music</label>
+        <input type="checkbox" id="sports" name="interest" value="sports">
+        <label for="sports">Sports</label><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
