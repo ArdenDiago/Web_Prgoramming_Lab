@@ -1,0 +1,82 @@
+<!-- Write a JavaScript code to find the sum of N natural Numbers. (Use user-defined function) -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User-Defined functions</title>
+    <style>
+        * {
+            color: white;
+            --color: rgb(85, 85, 218);
+        }
+        body {
+            background-color: var(--color);
+            margin: 20px;
+        }
+        input, button {
+            background-color: var(--color);
+            border: solid 2px black;
+            font-size: 15px;
+            border-radius: 40px;
+        }
+        h1 {
+            text-align: center;
+        }
+
+        hr {
+            width: 50%;
+            height: 2px;
+            background-color: black;
+            border: none;
+        }
+        #viewResult {
+            background-color: rgb(85, 218, 178);
+            color: black;
+            padding: 15px;
+            width: fit-content;
+            border-radius: 30px;
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        function generateSumOfNNaturalNumber() {
+            let sum = 0;
+            // Get the value of the input field and convert it to a number
+            const n = parseInt(document.getElementById('nThNumber').value, 10);
+
+            // Check if n is a valid number and greater than 0
+            if (isNaN(n) || n <= 0) {
+                document.getElementById('viewResult').innerHTML = 'Please enter a positive integer.';
+                return;
+            }
+
+            // Calculate the sum of the first n natural numbers
+            for (let i = 1; i <= n; i++) {
+                sum += i;
+            }
+
+            // Display the result using template literals
+            const result = `The sum of the first ${n} natural numbers is ${sum}.`;
+            document.getElementById('viewResult').innerHTML = result;
+            document.getElementById('viewResult').style = 'visibility: visible;'
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Find the Sum of N numbers</h1>
+    <hr>
+    <br><br>
+    <label>Enter the N<sup>th</sup> natural number: </label>
+    <input id="nThNumber" type="number" required>
+    <br><br>
+    <button onclick="generateSumOfNNaturalNumber()">Click me to generate the sum of the n<sup>th</sup> natural number</button>
+    <br><br>
+    <p id="viewResult"></p>
+</body>
+
+</html>
