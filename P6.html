@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <style>
+        .ro {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 10px;
+        }
+    </style>
+    <script>
+        function calculateResult(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Access form elements
+            const formDetails = document.getElementById('formDetails');
+            const name = formDetails.name.value;
+            const studentClass = formDetails.class.value;
+
+            // Get subject scores from the input fields
+            const english = parseFloat(document.getElementById('English').value);
+            const hindi = parseFloat(document.getElementById('Hindi').value);
+            const ds = parseFloat(document.getElementById('DS').value);
+            const pst = parseFloat(document.getElementById('PST').value);
+
+            // Check if any input is missing or invalid
+            if (isNaN(english) || isNaN(hindi) || isNaN(ds) || isNaN(pst)) {
+                document.getElementById('studentsResults').innerHTML = 'Please enter valid marks for all subjects.';
+                return;
+            }
+
+            // Calculate total and average
+            const total = english + hindi + ds + pst;
+            const average = total / 4;
+
+            // Determine result and grade
+            let result = average >= 40 ? 'Pass' : 'Fail';
+            let grade;
+            if (average >= 90) {
+                grade = 'A';
+            } else if (average >= 75) {
+                grade = 'B';
+            } else if (average >= 60) {
+                grade = 'C';
+            } else if (average >= 40) {
+                grade = 'D';
+            } else {
+                grade = 'F';
+            }
+
+            // Display the result
+            document.getElementById('studentsResults').innerHTML = `
+                <strong>Name:</strong> ${name}<br>
+                <strong>Class:</strong> ${studentClass}<br>
+                <strong>Total Marks:</strong> ${total}<br>
+                <strong>Average Marks:</strong> ${average.toFixed(2)}<br>
+                <strong>Result:</strong> ${result}<br>
+                <strong>Grade:</strong> ${grade}
+            `;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Student Information</h1>
+    
+    <!-- Student Form -->
+    <form id="formDetails" onsubmit="calculateResult(event)">
+        <label>Name</label>
+        <input type="text" id="name" required>
+        <br><br>
+
+        <label>Class</label>
+        <select id="class" required>
+            <option value="BCA1">BCA 1</option>
+            <option value="BCA2">BCA 2</option>
+            <option value="BCA3">BCA 3</option>
+            <option value="BSc1">BSc 1</option>
+            <option value="BSc2">BSc 2</option>
+            <option value="BSc3">BSc 3</option>
+        </select>
+        <br><br>
+
+        <!-- Subject Marks Inputs -->
+        <div class="ro">
+            <div>
+                <label>English</label>
+                <input type="number" id="English" min="0" max="100" required>
+            </div>
+            <div>
+                <label>Hindi</label>
+                <input type="number" id="Hindi" min="0" max="100" required>
+            </div>
+        </div>
+        <br>
+        <div class="ro">
+            <div>
+                <label>DS</label>
+                <input type="number" id="DS" min="0" max="100" required>
+            </div>
+            <div>
+                <label>PST</label>
+                <input type="number" id="PST" min="0" max="100" required>
+            </div>
+        </div>
+        <br><br>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Calculate Result">
+    </form>
+
+    <!-- Output Section for Result -->
+    <p id="studentsResults"></p>
+</body>
+
+</html>
